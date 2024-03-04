@@ -53,16 +53,8 @@ $('.wrapper').each(function() {
 
 
 
+
     $slider.on('touchstart', function(e) {
-        if (!canScroll) {
-            return; // Если прокрутка заблокирована, выходим из обработчика
-          }    
-        e.preventDefault();
-        var touch = e.originalEvent.touches[0];
-        startY = touch.clientY;
-    });
-    
-    $slider.on('touchmove', function(e) {
         e.preventDefault();
         if (!canScroll) {
             return; // Если прокрутка заблокирована, выходим из обработчика
@@ -81,6 +73,15 @@ $('.wrapper').each(function() {
       setTimeout(function() {
         canScroll = true; // Через 5 секунд разблокируем прокрутку
       }, 2000);
+    });
+    
+    $slider.on('touchmove', function(e) {
+        if (!canScroll) {
+            return; // Если прокрутка заблокирована, выходим из обработчика
+          }    
+        e.preventDefault();
+        var touch = e.originalEvent.touches[0];
+        startY = touch.clientY;
     });
     
     
